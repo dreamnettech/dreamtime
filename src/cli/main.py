@@ -70,6 +70,10 @@ def main():
         # Read input image
         image = cv2.imread(args.input)
 
+		#Check that image loaded
+        if image is None:
+            sys.exit("Failed to load image " + args.input)
+
         # Process
         result = process(image, gpu_ids, args.enablepubes)
 
