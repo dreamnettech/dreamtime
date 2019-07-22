@@ -74,10 +74,12 @@ Download DreamTime is very easy! 2 files and you are ready. _(Get ready to downl
 
 ## Download Mirrors
 
+- [CLI & GUI (Github)](https://github.com/private-dreamnet/dreamtime/releases)
 - [CLI & GUI (MEGA)](http://bit.ly/2YQAEI1)
 - [CLI & GUI (MediaFire)](http://bit.ly/2YQAHnb)
 - [Checkpoints (MEGA)](http://bit.ly/30GiSbh)
 - [Checkpoints (MediaFire)](http://bit.ly/2Y0V6sO)
+- [Checkpoints (Magnet Link)](magnet:?xt=urn:btih:ece03d9f696b340aee23ff07fb0bc44b1dd34b65&dn=checkpoints.zip)
 
 ## Installation
 
@@ -123,7 +125,7 @@ Discord: `DeepManYY#5508`
 ## Requirements
 
 - [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive)
-- [Python 3.6](https://www.python.org/downloads/release/python-368/)
+- [Python 3.6.2+](https://www.python.org/downloads/release/python-368/)
 - [NodeJS 10+](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/en/docs/install)
 
