@@ -70,7 +70,7 @@ def main():
         # Read input image
         image = cv2.imread(args.input)
 
-		#Check that image loaded
+        #Check that image loaded
         if image is None:
             sys.exit("Failed to load image " + args.input)
 
