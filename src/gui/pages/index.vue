@@ -20,6 +20,13 @@
       <!-- Quick Upload -->
       <nudity-upload v-if="validCliDir && validCheckpointsDir" />
 
+      <!-- No deeptools -->
+      <div v-if="!deepToolsMissing" class="notification is-danger">
+        <strong>❌ Hold on!</strong><br />
+        It looks like you are not accessing this application from the electron app in dev mode.<br/>
+        You need to make sure you run <code>yarn dev-gui</code> and access the server from the window that opens.<br/><br/>
+        Join our Discord for more information.
+      </div>
       <!-- CLI Dir -->
       <div v-if="!validCliDir" class="notification is-danger">
         <strong>❌ Hold on!</strong><br />
@@ -54,6 +61,11 @@ export default {
   }),
 
   created() {
+    this.deepToolsMissing = false;
+    if(!window.deepTools) {
+      this.deepToolsMissing = true;
+      return;
+    }
     this.cliDirPath = window.deepTools.getCliDirPath()
     this.validCliDir = window.deepTools.fs.exists(this.cliDirPath)
 
