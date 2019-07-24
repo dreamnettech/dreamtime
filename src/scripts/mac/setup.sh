@@ -15,7 +15,7 @@ cd ../../cli
 pip3 --no-cache-dir install pyinstaller
 
 # This command should resolve and install all the necessary packages
-pip3 --no-cache-dir install -r requirements-ubuntu.txt
+pip3 --no-cache-dir install -r requirements-mac.txt
 
 # NOTES from wisp101:
 # Make sure pyinstaller is accessible from the cmdline as "pyinstaller".
@@ -47,5 +47,5 @@ yarn install --force --no-lockfile
 #
 
 echo "Installation completed!"
-echo "- Now you can run the dev-start.bat script to start modifying the GUI and see the changes in real time."
-echo "- Now you can run the build.bat script to compile the project and get an easy-to-use binary"
+echo "- Now you can run the dev-start.sh script to start modifying the GUI and see the changes in real time."
+echo "- Now you can run the build.sh script to compile the project and get an easy-to-use binary"
