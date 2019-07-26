@@ -79,7 +79,7 @@ Download DreamTime is very easy! 2 files and you are ready. _(Get ready to downl
 - [CLI & GUI (MediaFire)](http://bit.ly/2YQAHnb)
 - [Checkpoints (MEGA)](http://bit.ly/30GiSbh)
 - [Checkpoints (MediaFire)](http://bit.ly/2Y0V6sO)
-- [Checkpoints (Magnet Link)](magnet:?xt=urn:btih:ece03d9f696b340aee23ff07fb0bc44b1dd34b65&dn=checkpoints.zip)
+- Checkpoints (Magnet Link): magnet:?xt=urn:btih:5TQD3H3JNM2AV3RD74D7WC6EJMO5GS3F&dn=checkpoints.zip&xl=2032833191&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce
 
 ## Installation
 
