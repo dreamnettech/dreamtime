@@ -1,16 +1,20 @@
 import cv2
-import math
+
+from opencv_transform.dress_to_correct import correct_color
 
 desired_size = 512
 
 
 def crop_input(img,x1,y1,x2,y2):
     crop = img[y1:y2,x1:x2]
-    return resize_crop_input(crop)
+    return resize_input(crop)
 
 
 def overlay_original_img(original_img,img,x1,y1,x2,y2):
     img = cv2.resize(img, (abs(x1-x2), abs(y1-y2)))
+    original_img = original_img[:,:,:3]
+    img = img[:, :, :3]
+    original_img = correct_color(original_img,5)
     original_img[y1:y2,x1:x2] = img[:,:,:3]
     return original_img
 

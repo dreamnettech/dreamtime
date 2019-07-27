@@ -79,7 +79,7 @@ scale_mod.add_argument(
 
 def check_crops_coord():
     def type_func(a):
-        if not re.match(r"^\d*,\d*:\d*,\d*$", a):
+        if not re.match(r"^\d+,\d+:\d+,\d+$", a):
             raise argparse.ArgumentTypeError("Incorrect coordinates format. Valid format is <x_top_left>,<y_top_left>:<x_bot_right>,<x_bot_right>")
         return tuple(int(x) for x in re.findall('\d+', a))
     return type_func
