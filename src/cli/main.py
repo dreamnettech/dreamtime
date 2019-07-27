@@ -8,6 +8,7 @@ import os
 import imageio
 import sentry_sdk
 import rook
+import utils
 
 from run import process, process_gif
 from multiprocessing import freeze_support
@@ -47,6 +48,24 @@ parser.add_argument(
 parser.add_argument(
     "--gif", action="store_true", default=False, help="Run the processing on a gif"
 )
+parser.add_argument(
+    "--auto-resize",
+    action="store_true",
+    default=False,
+    help="Scale and pad image to 512x512. Maintains aspect ratio. Doesn't support gifs for now.",
+)
+parser.add_argument(
+    "--auto-resize-crop",
+    action="store_true",
+    default=False,
+    help="Scale and crop image to 512x512. Maintains aspect ratio. Doesn't support gifs for now.",
+)
+parser.add_argument(
+    "--auto-rescale",
+    action="store_true",
+    default=False,
+    help="Scale image to 512x512. Doesn't support gifs for now.",
+)
 args = parser.parse_args()
 
 """
@@ -71,6 +90,13 @@ def main():
     if not args.gif:
         # Read input image
         image = cv2.imread(args.input)
+
+        if args.auto_resize:
+            image = utils.resize_input(image)
+        elif args.auto_resize_crop:
+            image = utils.resize_crop_input(image)
+        elif args.auto_rescale:
+            image = utils.rescale_input(image)
 
         # Process
         result = process(image, gpu_ids, args.enablepubes)
