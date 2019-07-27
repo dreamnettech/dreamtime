@@ -37,3 +37,6 @@ def resize_crop_input(img):
 def rescale_input(img):
     return cv2.resize(img, (desired_size, desired_size))
 
+
+def strip_file_extension(filename, extension):
+    return filename[::-1].replace(extension[::-1], "", 1)[::-1]

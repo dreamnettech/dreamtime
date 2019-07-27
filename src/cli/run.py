@@ -185,19 +185,20 @@ def process(cv_img, gpu_ids, enable_pubes):
 # return:
 # 	gif
 
-def process_gif(gif_imgs, gpu_ids, enable_pubes, tmp_dir):
+def process_gif(gif_imgs, gpu_ids, enable_pubes, tmp_dir, n_cores):
     def process_one_image(a):
         print("Processing image : {}/{}".format(a[1] + 1, len(gif_imgs)))
         img = cv2.resize(a[0], (512, 512))
         img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         cv2.imwrite(os.path.join(tmp_dir, "output_{}.jpg".format(a[1])), process(img, gpu_ids, enable_pubes))
 
-    print(gpu_ids)
+    print("GPU IDs: " + str(gpu_ids), flush=True)
     if gpu_ids is None: # Only multithreading with CPU because threads cause crashes with GPU
-        pool = ThreadPool(4)
+        pool = ThreadPool(n_cores)
         pool.map(process_one_image, zip(gif_imgs, range(len(gif_imgs))))
         pool.close()
         pool.join()
     else:
         for x in zip(gif_imgs, range(len(gif_imgs))):
             process_one_image(x)
+

@@ -6,7 +6,7 @@ DreamTime allows you to use the power of your CPU or GPU to transform photos tha
 
 DreamTime offers a version in CLI (Command Line Interface) and one in GUI (Graphical User Interface):
 
-- The CLI version allows you to transform photos using commands, with this you can create automated systems such as _bots, web pages or even a new GUI_. Use the argument `--help` to get more information about usage, keep in mind that the CLI by itself **does not have** a cropping system so you will have to manually resize your photos to 512x512
+- The CLI version allows you to transform photos using commands, with this you can create automated systems such as _bots, web pages or even a new GUI_. Use the argument `--help` to get more information about usage.
 
 - The GUI version is a new friendly interface that includes a cropping system, so you only have to tell the program which photo you want to transform and you will get results in a few clicks.
 

@@ -12,6 +12,7 @@ import utils
 
 from run import process, process_gif
 from multiprocessing import freeze_support
+from multiprocessing.pool import ThreadPool
 from dotenv import load_dotenv
 
 #
@@ -46,25 +47,31 @@ parser.add_argument(
     help="generates pubic hair on output image",
 )
 parser.add_argument(
-    "--gif", action="store_true", default=False, help="Run the processing on a gif"
+    "--gif", action="store_true", default=False, help="run the processing on a gif"
 )
 parser.add_argument(
     "--auto-resize",
     action="store_true",
     default=False,
-    help="Scale and pad image to 512x512. Maintains aspect ratio. Doesn't support gifs for now.",
+    help="Scale and pad image to 512x512 (maintains aspect ratio)",
 )
 parser.add_argument(
     "--auto-resize-crop",
     action="store_true",
     default=False,
-    help="Scale and crop image to 512x512. Maintains aspect ratio. Doesn't support gifs for now.",
+    help="Scale and crop image to 512x512 (maintains aspect ratio)",
 )
 parser.add_argument(
     "--auto-rescale",
     action="store_true",
     default=False,
-    help="Scale image to 512x512. Doesn't support gifs for now.",
+    help="Scale image to 512x512",
+)
+parser.add_argument(
+    "-n", "--n_runs", type=int, help="number of times to process input (default: 1)",
+)
+parser.add_argument(
+    "--n_cores", type=int, default=4, help="number of cpu cores to use (default: 4)",
 )
 args = parser.parse_args()
 
@@ -88,9 +95,10 @@ def main():
         gpu_ids = [0]
 
     if not args.gif:
-        # Read input image
+        # Read image
         image = cv2.imread(args.input)
 
+        # Preprocess
         if args.auto_resize:
             image = utils.resize_input(image)
         elif args.auto_resize_crop:
@@ -99,25 +107,44 @@ def main():
             image = utils.rescale_input(image)
 
         # Process
-        result = process(image, gpu_ids, args.enablepubes)
+        if args.n_runs is None or args.n_runs == 1:
+            result = process(image, gpu_ids, args.enablepubes)
+            cv2.imwrite(args.output, result)
+        else:
+            base_output_filename = utils.strip_file_extension(args.output, ".png")
 
-        # Write output image
-        cv2.imwrite(args.output, result)
+            def process_one_image(i):
+                result = process(image, gpu_ids, args.enablepubes)
+                cv2.imwrite(base_output_filename + "%03d.png" % i, result)
+
+            if args.cpu:
+                pool = ThreadPool(args.n_cores)
+                pool.map(process_one_image, range(args.n_runs))
+                pool.close()
+                pool.join()
+            else:
+                for i in range(args.n_runs):
+                    process_one_image(i)
     else:
+        # Read images
         gif_imgs = imageio.mimread(args.input)
-        nums = len(gif_imgs)
-        print("Total {} frames in the gif!".format(nums))
-        tmp_dir = tempfile.mkdtemp()
-        process_gif(gif_imgs, gpu_ids, args.enablepubes, tmp_dir)
-        print("Creating gif")
-        imageio.mimsave(
-            args.output if args.output != "output.png" else "output.gif",
-            [
-                imageio.imread(os.path.join(tmp_dir, "output_{}.jpg".format(i)))
-                for i in range(nums)
-            ],
-        )
-        shutil.rmtree(tmp_dir)
+        print("Total {} frames in the gif!".format(len(gif_imgs)))
+
+        # Preprocess
+        if args.auto_resize:
+            gif_imgs = [utils.resize_input(img) for img in gif_imgs]
+        elif args.auto_resize_crop:
+            gif_imgs = [utils.resize_crop_input(img) for img in gif_imgs]
+        elif args.auto_rescale:
+            gif_imgs = [utils.rescale_input(img) for img in gif_imgs]
+
+        # Process
+        if args.n_runs is None or args.n_runs == 1:
+            process_gif_wrapper(gif_imgs, args.output if args.output != "output.png" else "output.gif", gpu_ids, args.enablepubes, args.n_cores)
+        else:
+            base_output_filename = utils.strip_file_extension(args.output, ".gif") if args.output != "output.png" else "output"
+            for i in range(args.n_runs):
+                process_gif_wrapper(gif_imgs, base_output_filename + "%03d.gif" % i, gpu_ids, args.enablepubes, args.n_cores)
 
     end = time.time()
     duration = end - start
@@ -127,6 +154,20 @@ def main():
 
     # Exit
     sys.exit()
+
+
+def process_gif_wrapper(gif_imgs, filename, gpu_ids, enablepubes, n_cores):
+    tmp_dir = tempfile.mkdtemp()
+    process_gif(gif_imgs, gpu_ids, enablepubes, tmp_dir, n_cores)
+    print("Creating gif")
+    imageio.mimsave(
+        filename,
+        [
+            imageio.imread(os.path.join(tmp_dir, "output_{}.jpg".format(i)))
+            for i in range(len(gif_imgs))
+        ],
+    )
+    shutil.rmtree(tmp_dir)
 
 
 def start_sentry():
