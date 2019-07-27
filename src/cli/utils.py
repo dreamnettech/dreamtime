@@ -4,6 +4,17 @@ import math
 desired_size = 512
 
 
+def crop_input(img,x1,y1,x2,y2):
+    crop = img[y1:y2,x1:x2]
+    return resize_crop_input(crop)
+
+
+def overlay_original_img(original_img,img,x1,y1,x2,y2):
+    img = cv2.resize(img, (abs(x1-x2), abs(y1-y2)))
+    original_img[y1:y2,x1:x2] = img[:,:,:3]
+    return original_img
+
+
 def resize_input(img):
     old_size = img.shape[:2]
     ratio = float(desired_size)/max(old_size)

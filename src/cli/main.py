@@ -1,3 +1,4 @@
+import re
 import shutil
 import sys
 import argparse
@@ -28,13 +29,14 @@ parser.add_argument(
     default="output.png",
     help="path where the transformed photo will be saved. (default: output.png or output.gif)",
 )
-parser.add_argument(
+processing_mod = parser.add_mutually_exclusive_group()
+processing_mod.add_argument(
     "--cpu",
     default=False,
     action="store_true",
     help="force photo processing with CPU (slower)",
 )
-parser.add_argument(
+processing_mod.add_argument(
     "--gpu",
     action="append",
     type=int,
@@ -50,28 +52,42 @@ parser.add_argument(
     "--gif", action="store_true", default=False, help="run the processing on a gif"
 )
 parser.add_argument(
+    "-n", "--n_runs", type=int, help="number of times to process input (default: 1)",
+)
+parser.add_argument(
+    "--n_cores", type=int, default=4, help="number of cpu cores to use (default: 4)",
+)
+scale_mod = parser.add_mutually_exclusive_group()
+scale_mod.add_argument(
     "--auto-resize",
     action="store_true",
     default=False,
     help="Scale and pad image to 512x512 (maintains aspect ratio)",
 )
-parser.add_argument(
+scale_mod.add_argument(
     "--auto-resize-crop",
     action="store_true",
     default=False,
     help="Scale and crop image to 512x512 (maintains aspect ratio)",
 )
-parser.add_argument(
+scale_mod.add_argument(
     "--auto-rescale",
     action="store_true",
     default=False,
     help="Scale image to 512x512",
 )
-parser.add_argument(
-    "-n", "--n_runs", type=int, help="number of times to process input (default: 1)",
-)
-parser.add_argument(
-    "--n_cores", type=int, default=4, help="number of cpu cores to use (default: 4)",
+
+def check_crops_coord():
+    def type_func(a):
+        if not re.match(r"^\d*,\d*:\d*,\d*$", a):
+            raise argparse.ArgumentTypeError("Incorrect coordinates format. Valid format is <x_top_left>,<y_top_left>:<x_bot_right>,<x_bot_right>")
+        return tuple(int(x) for x in re.findall('\d+', a))
+    return type_func
+
+scale_mod.add_argument(
+    "--overlay",
+    type=check_crops_coord(),
+    help="Processing the part of the image given by the coordinates (<x_top_left>,<y_top_left>:<x_bot_right>,<x_bot_right>) and overlay the result on the original image.",
 )
 args = parser.parse_args()
 
@@ -85,6 +101,9 @@ main.py
 
 # ------------------------------------------------- main()
 def main():
+    if not os.path.isfile(args.input):
+        print("Error : {} file doesn't exist".format(args.input), file=sys.stderr)
+        exit(1)
     start = time.time()
 
     gpu_ids = args.gpu
@@ -99,7 +118,10 @@ def main():
         image = cv2.imread(args.input)
 
         # Preprocess
-        if args.auto_resize:
+        if args.overlay :
+            original_image = image.copy()
+            image = utils.crop_input(image,args.overlay[0],args.overlay[1],args.overlay[2],args.overlay[3])
+        elif args.auto_resize:
             image = utils.resize_input(image)
         elif args.auto_resize_crop:
             image = utils.resize_crop_input(image)
@@ -109,12 +131,20 @@ def main():
         # Process
         if args.n_runs is None or args.n_runs == 1:
             result = process(image, gpu_ids, args.enablepubes)
+
+            if args.overlay:
+                result = utils.overlay_original_img(original_image,result,args.overlay[0],args.overlay[1],args.overlay[2],args.overlay[3])
+
             cv2.imwrite(args.output, result)
         else:
             base_output_filename = utils.strip_file_extension(args.output, ".png")
 
             def process_one_image(i):
                 result = process(image, gpu_ids, args.enablepubes)
+
+                if args.overlay:
+                    result = utils.overlay_original_img(original_image, result, args.overlay[0], args.overlay[1],
+                                                        args.overlay[2], args.overlay[3])
                 cv2.imwrite(base_output_filename + "%03d.png" % i, result)
 
             if args.cpu:
@@ -168,6 +198,7 @@ def process_gif_wrapper(gif_imgs, filename, gpu_ids, enablepubes, n_cores):
         ],
     )
     shutil.rmtree(tmp_dir)
+
 
 
 def start_sentry():
