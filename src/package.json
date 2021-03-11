@@ -140,7 +140,7 @@
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
-    "babel-watch": "^7.4.0",
+    "babel-watch": "^7.4.1",
     "content-disposition": "^0.5.3",
     "core-js": "^3.9.0",
     "cross-env": "^7.0.3",

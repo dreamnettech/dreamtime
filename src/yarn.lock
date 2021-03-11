@@ -4217,10 +4217,10 @@ babel-plugin-transform-inline-environment-variables@^0.4.3:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-inline-environment-variables/-/babel-plugin-transform-inline-environment-variables-0.4.3.tgz#a3b09883353be8b5e2336e3ff1ef8a5d93f9c489"
   integrity sha1-o7CYgzU76LXiM24/8e+KXZP5xIk=
 
-babel-watch@^7.4.0:
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/babel-watch/-/babel-watch-7.4.0.tgz#ddcfcb774d7132f3432bca58438fdc82581ae66d"
-  integrity sha512-Ig7Mz0JmPCvs1Tao5ko4Dg/YXaywf9duUhPQUAt0UzSZtuxtYwYmdu4Gf6uaG0zg5vf5qOYpDrzPpG96OQoHkg==
+babel-watch@^7.4.1:
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/babel-watch/-/babel-watch-7.4.1.tgz#d1a8a5d6c95a02cbeec770f50fa038174e3c565f"
+  integrity sha512-hlQYW0f+aQLp2u4RWibCDPNm2QlE54Ym0GX27GjuZLd1iWmaaSZjK5slpZy3Bw+hZVbDJDvi6z9A3n+SlRt/Cw==
   dependencies:
     chalk "^4.1.0"
     chokidar "^3.4.3"
