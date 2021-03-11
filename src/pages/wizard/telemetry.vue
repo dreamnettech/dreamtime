@@ -69,7 +69,7 @@
       </div>
 
       <div class="wizard__footer">
-        <button class="button button--xl" @click="next">
+        <button class="button button--xl button--primary" @click="next">
           Continue
         </button>
       </div>

@@ -84,7 +84,6 @@ export default {
   }
 
   .item__description {
-    @apply text-common;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="project">
-    <div class="project__buttons buttons">
+    <div class="project__buttons">
       <a v-for="(item, index) in supportButtons"
          :key="index"
          v-tooltip="item.label"
@@ -113,7 +113,7 @@ export default {
 }
 
 .project__buttons {
-  @apply mb-6;
+  @apply mb-6 flex justify-center;
 }
 
 .project__content {

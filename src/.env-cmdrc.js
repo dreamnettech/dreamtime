@@ -7,7 +7,7 @@ module.exports = {
   "default": {},
   "development": {
     "NODE_ENV": "development",
-    "SERVER_HOST": "localhost",
+    "SERVER_HOST": "127.0.0.1",
     "SERVER_PORT": 4000,
     "DREAMTRACK_HOST": "127.0.0.1:30200",
     "DOWNLOADS_API": "http://127.0.0.1:30200/downloads",

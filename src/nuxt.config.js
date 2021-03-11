@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-
 const tailwind = require('./tailwind.config')
 
 const dev = process.env.NODE_ENV === 'development'
@@ -58,7 +57,6 @@ module.exports = {
     '~/plugins/binds.js',
     '~/plugins/boot.js',
     '~/plugins/setup.js',
-    // '~/plugins/fontawesome.js',
     '~/plugins/vue-slider.js',
     '~/plugins/vue-portal.js',
   ],
@@ -82,10 +80,8 @@ module.exports = {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [],
 
-  //
-  tailwindcss: {
-    cssPath: '~/assets/css/tailwind.scss',
-  },
+  // https://tailwindcss.nuxtjs.org
+  // tailwindcss: {},
 
   // https://github.com/nuxt-community/style-resources-module
   styleResources: {
@@ -95,10 +91,10 @@ module.exports = {
   // https://github.com/nuxt-community/google-fonts-module
   googleFonts: {
     families: {
-      Rubik: [400, 600, 700],
-      Inter: [400, 600, 700],
+      Rubik: [300, 400, 600, 700],
+      Inter: [100, 200, 300, 400, 600, 700],
     },
-    download: true,
+    download: process.env.NODE_ENV === 'production',
   },
 
   // https://github.com/nuxt-community/fontawesome-module
@@ -176,6 +172,8 @@ module.exports = {
         'faExclamationCircle',
         'faCubes',
         'faWrench',
+        'faLeaf',
+        'faPlusCircle',
       ],
       regular: [
         'faSquare',
@@ -213,13 +211,15 @@ module.exports = {
     cache,
 
     // Enables Common CSS Extraction using Vue Server Renderer guidelines.
-    extractCSS: false,
+    // extractCSS: false,
 
     //
     publicPath: '/assets/',
 
     // Customize Babel configuration for JavaScript and Vue files.
     babel: {
+      cacheDirectory: cache,
+
       plugins: [
         'lodash',
         '@babel/plugin-proposal-optional-chaining',

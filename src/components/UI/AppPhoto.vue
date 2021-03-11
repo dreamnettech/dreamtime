@@ -48,7 +48,7 @@ export default {
 
   .photo__label {
     @apply p-2 rounded-b bg-dark-500;
-    @apply text-common-light text-sm font-semibold text-center;
+    @apply text-snow-light text-sm font-semibold text-center;
   }
 }
 </style>

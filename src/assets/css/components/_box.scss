@@ -11,7 +11,7 @@
 
 .box {
   @apply flex flex-col;
-  @apply bg-menus shadow-lg rounded;
+  @apply bg-menus shadow rounded;
 
   &:not(:last-child) {
     @apply mb-6;
@@ -38,18 +38,22 @@
   }
 
   .box__header {
-    @apply px-4 py-3 bg-menus-dark rounded-tr rounded-tl;
+    @apply px-6 py-3 bg-menus-dark;
+
+    &:first-child {
+      @apply rounded-tr rounded-tl;
+    }
 
     &:not(:first-child) {
       @apply pt-3;
     }
 
     .title {
-      @apply font-bold text-white font-title;
+      @apply font-title font-bold;
     }
 
     .subtitle {
-      @apply font-title;
+      @apply font-title font-light text-sm text-snow-darker;
     }
   }
 

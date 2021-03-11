@@ -77,7 +77,7 @@ export default {
 
 .box--community {
   .title {
-    @apply text-white text-2xl;
+    @apply text-lg;
   }
 }
 

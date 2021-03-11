@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <TitlebarStats v-if="$settings.app.showStats" />
+    <SystemStats v-if="$settings.app.showStats" />
 
     <div class="menu__content">
       <!-- Custom menu -->
@@ -25,20 +25,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes logoAnim {
-  0% {
-    background-position: 0% 0%;
-  }
-
-  50% {
-    background-position: 100% 0%;
-  }
-
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
 .menu {
   @apply flex flex-col;
   @apply bg-menus relative;

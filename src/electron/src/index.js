@@ -9,7 +9,7 @@
 
 import { startsWith, debounce } from 'lodash'
 import {
-  app, BrowserWindow, shell, protocol, nativeImage,
+  app, BrowserWindow, shell, protocol, nativeImage, session,
 } from 'electron'
 import { dirname, resolve } from 'path'
 import Logger from '@dreamnet/logplease'
@@ -19,7 +19,6 @@ import { system } from './modules/tools/system'
 import { getPath, getAppPath } from './modules/tools/paths'
 import { settings } from './modules'
 import config from '~/nuxt.config'
-import tailwind from '~/tailwind.config'
 
 const logger = Logger.create('electron')
 
@@ -88,7 +87,7 @@ class DreamApp {
     app.setAppUserModelId(process.execPath)
 
     // https://pracucci.com/electron-slow-background-performances.html
-    app.commandLine.appendSwitch('disable-renderer-backgrounding')
+    // app.commandLine.appendSwitch('disable-renderer-backgrounding')
     app.commandLine.appendSwitch('enable-features', 'ImpulseScrollAnimations,SmoothScrolling')
 
     // https://github.com/electron/electron/issues/17972
@@ -224,6 +223,14 @@ class DreamApp {
       })
     })
 
+    // https://www.electronjs.org/docs/api/web-request
+    session.defaultSession.webRequest.onBeforeSendHeaders({
+      urls: ['https://*.4cdn.org/*'],
+    }, (details, next) => {
+      details.requestHeaders.referer = 'https://boards.4chan.org'
+      next({ requestHeaders: details.requestHeaders })
+    })
+
     // https://github.com/electron/electron/issues/23757#issuecomment-640146333
     protocol.registerFileProtocol('media', (request, callback) => {
       const pathname = decodeURI(request.url.replace('media://', ''))
@@ -275,7 +282,7 @@ class DreamApp {
       minWidth: 1200,
       minHeight: 700,
       frame: false,
-      backgroundColor: tailwind.theme.extend.colors.background,
+      // backgroundColor: tailwind.theme.extend.colors.background,
 
       webPreferences: {
         enableRemoteModule: true,

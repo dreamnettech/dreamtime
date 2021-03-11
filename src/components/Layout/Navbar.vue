@@ -101,20 +101,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes alertAnim {
-  0% {
-    @apply text-danger-500;
-  }
-
-  50% {
-    @apply text-warning-500;
-  }
-
-  100% {
-    @apply text-danger-500;
-  }
-}
-
 .nav {
   @apply flex z-10;
   @apply h-full bg-menus border-b border-menus-dark px-3 shadow-lg;
@@ -231,16 +217,5 @@ export default {
       @apply text-primary-500;
     }
   }
-}
-
-.alerts--active {
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-name: alertAnim;
-  animation-timing-function: ease-in-out;
-}
-
-.alerts--ok {
-  @apply text-success-500;
 }
 </style>

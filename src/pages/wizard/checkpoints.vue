@@ -6,10 +6,6 @@
         <span>Updater</span>
       </h2>
 
-      <h3 class="subtitle">
-        {{ $checkpoints.name }}
-      </h3>
-
       <template #right>
         <button v-if="requirements.power.checkpoints" class="button" @click="$router.replace('/')">
           <span class="icon"><font-awesome-icon icon="caret-left" /></span>

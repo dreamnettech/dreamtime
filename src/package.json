@@ -1,6 +1,6 @@
 {
   "name": "dreamtime",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "displayName": "DreamTime",
   "description": "The easiest to use application to create fake nudes from photos and videos.",
   "private": true,
@@ -44,6 +44,7 @@
     "@dicebear/avatars-jdenticon-sprites": "^4.5.4",
     "@dreamnet/logplease": "^1.0.0",
     "@dreamnet/queue": "^0.1.2",
+    "@dreamnet/downloader": "link:C:/src/dreamnet/monorepo/workspaces/downloader",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
@@ -121,12 +122,9 @@
   "devDependencies": {
     "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@babel/cli": "^7.13.0",
-    "@babel/core": "^7.13.8",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
     "@babel/plugin-proposal-optional-chaining": "^7.13.8",
-    "@babel/plugin-transform-regenerator": "^7.12.13",
-    "@babel/preset-env": "^7.13.8",
     "@dreamnet/app": "^1.1.1",
     "@dreamnet/deploy": "^1.1.0",
     "@nuxtjs/dotenv": "^1.4.1",
@@ -136,13 +134,14 @@
     "@nuxtjs/google-fonts": "^1.2.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/tailwindcss": "^3.4.2",
+    "@types/cheerio": "^0.22.24",
+    "@types/jsdom": "^16.2.6",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-preval": "^5.0.0",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
-    "babel-watch": "^7.4.0",
     "content-disposition": "^0.5.3",
-    "core-js": "^3.9.0",
     "cross-env": "^7.0.3",
     "electron": "11.3.0",
     "electron-builder": "^22.10.4",
@@ -173,13 +172,11 @@
     "modclean": "^3.0.0-beta.1",
     "ndjson-parse": "^1.0.4",
     "ngrok": "^3.4.0",
-    "nuxt-purgecss": "^1.0.0",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
     "sha256-file": "^1.0.0",
     "shx": "^0.3.3",
     "spectron": "^13.0.0",
-    "tailwindcss": "2.0.3",
     "worker-loader": "^3.0.8"
   },
   "author": {
@@ -196,7 +193,7 @@
     "url": "https://github.com/dreamnettech/dreamtime/issues"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=12.13"
   },
   "os": [
     "win32",

@@ -52,7 +52,7 @@ export default {
 
 .project__content {
   .title {
-    @apply text-white text-2xl;
+    @apply text-lg;
   }
 }
 

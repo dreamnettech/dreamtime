@@ -40,7 +40,7 @@ export default {
 <style lang="scss" scoped>
 .project__content {
   .title {
-    @apply text-white text-2xl;
+    @apply text-lg;
   }
 }
 

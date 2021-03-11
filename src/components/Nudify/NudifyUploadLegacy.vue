@@ -2,35 +2,7 @@
   <div class="uploader">
     <!-- Menu -->
     <portal to="menu">
-      <section id="uploader-methods" class="menu__items">
-        <MenuItem
-          label="Instagram"
-          :icon="['fab', 'instagram']"
-          :is-link="true"
-          :class="{'item--active': selectionId === 1}"
-          @click="selectionId = 1" />
-
-        <MenuItem
-          label="YouTube"
-          :icon="['fab', 'youtube']"
-          :is-link="true"
-          :class="{'item--active': selectionId === 4}"
-          @click="selectionId = 4" />
-
-        <MenuItem
-          label="Giphy"
-          icon="https://unpkg.com/simple-icons@v4/icons/giphy.svg"
-          :is-link="true"
-          :class="{'item--active': selectionId === 5}"
-          @click="selectionId = 5" />
-
-        <MenuItem
-          label="Web"
-          icon="globe"
-          :is-link="true"
-          :class="{'item--active': selectionId === 0}"
-          @click="selectionId = 0" />
-
+      <section class="menu__items">
         <MenuItem
           label="File"
           icon="file"
@@ -44,6 +16,47 @@
           :is-link="true"
           :class="{'item--active': selectionId === 3}"
           @click="selectionId = 3" />
+      </section>
+
+      <section class="menu__items">
+        <MenuItem
+          label="Instagram"
+          :icon="['fab', 'instagram']"
+          :is-link="true"
+          :class="{'item--active': selectionId === 1}"
+          @click="selectionId = 1" />
+
+        <MenuItem
+          label="Web"
+          icon="globe"
+          :is-link="true"
+          :class="{'item--active': selectionId === 0}"
+          @click="selectionId = 0" />
+      </section>
+
+      <section class="menu__items">
+        <MenuItem
+          label="YouTube"
+          :icon="['fab', 'youtube']"
+          :is-link="true"
+          :class="{'item--active': selectionId === 4}"
+          @click="selectionId = 4" />
+
+        <MenuItem
+          label="Giphy"
+          icon="https://unpkg.com/simple-icons@v4/icons/giphy.svg"
+          :is-link="true"
+          :class="{'item--active': selectionId === 5}"
+          @click="selectionId = 5" />
+      </section>
+
+      <section class="menu__items">
+        <MenuItem
+          label="4chan"
+          icon="leaf"
+          :is-link="true"
+          :class="{'item--active': selectionId === 6}"
+          @click="selectionId = 6" />
       </section>
     </portal>
 
@@ -82,172 +95,51 @@
 
     <div class="uploader__methods">
       <!-- Web Address -->
-      <div v-show="selectionId === 0" class="methods__content">
-        <PageHeader>
-          <h2 class="title">
-            <span class="icon"><font-awesome-icon icon="globe" /></span>
-            <span>Web</span>
-          </h2>
-
-          <h3 class="subtitle">
-            Open photos and videos from the web.
-          </h3>
-        </PageHeader>
-
-        <div class="method__body text-center">
-          <input v-model="webAddress"
-                 type="url"
-                 class="input"
-                 placeholder="https://"
-                 data-private="lipsum">
-
-          <button class="button" @click="openUrl">
-            <span>OPEN</span>
-          </button>
-
-          <span class="method__note">PNG, JPG, GIF, MP4 and WEBM direct urls only.</span>
-          <span class="method__note">Remember that you can drag & drop the files from your web browser.</span>
-        </div>
-      </div>
+      <UploaderWeb v-show="selectionId === 0" />
 
       <!-- Instagram -->
-      <div v-show="selectionId === 1" class="methods__content">
-        <PageHeader>
-          <h2 class="title">
-            <span class="icon"><font-awesome-icon :icon="['fab', 'instagram']" /></span>
-            <span>Instagram</span>
-          </h2>
-
-          <h3 class="subtitle">
-            Open photos and videos from any public Instagram profile.
-          </h3>
-        </PageHeader>
-
-        <div class="method__body text-center">
-          <input v-model="instagramPhoto"
-                 type="url"
-                 class="input mb-2"
-                 placeholder="https://www.instagram.com/p/..."
-                 data-private="lipsum">
-
-          <button class="button"
-                  @click="openInstagramPhoto">
-            <span>OPEN</span>
-          </button>
-
-          <span class="method__note">Make sure the profile is public and you are not using a VPN/Proxy. <AppTip class="ml-2" tooltip="Instagram usually blocks access to public photos if you are using a VPN/Proxy." /></span>
-        </div>
-      </div>
+      <UploaderProvider
+        v-show="selectionId === 1"
+        provider="Instagram"
+        subtitle="Open public photos and videos from Instagram."
+        :icon="['fab', 'instagram']"
+        placeholder="https://www.instagram.com/p/"
+        note="Make sure the profile is public and you are not using a VPN/Proxy."
+        note-tooltip="Instagram usually blocks access to public photos if you are using a VPN/Proxy." />
 
       <!-- File -->
-      <div v-show="selectionId === 2" class="methods__content">
-        <PageHeader>
-          <h2 class="title">
-            <span class="icon"><font-awesome-icon icon="file" /></span>
-            <span>File</span>
-          </h2>
-
-          <h3 class="subtitle">
-            Open one or more files from your computer.
-          </h3>
-        </PageHeader>
-
-        <input
-          v-show="false"
-          ref="photo"
-          type="file"
-          accept="image/jpeg, image/png, image/gif, video/mp4, video/webm"
-          multiple
-          @change="openFile">
-
-        <div class="method__body text-center">
-          <button class="button"
-                  @click.prevent="$refs.photo.click()">
-            <span>OPEN</span>
-          </button>
-
-          <span class="method__note">PNG, JPG, GIF, MP4 and WEBM files only.</span>
-          <span class="method__note">Remember that you can drag & drop the files.</span>
-        </div>
-      </div>
+      <UploaderFile v-show="selectionId === 2" />
 
       <!-- Folder -->
-      <div v-show="selectionId === 3" class="methods__content">
-        <PageHeader>
-          <h2 class="title">
-            <span class="icon"><font-awesome-icon icon="folder" /></span>
-            <span>Folder</span>
-          </h2>
-
-          <h3 class="subtitle">
-            Open all valid photos and videos from a folder on your computer.
-          </h3>
-        </PageHeader>
-
-        <div class="method__body text-center">
-          <button class="button"
-                  @click.prevent="openFolder">
-            <span>OPEN FOLDER</span>
-          </button>
-
-          <span class="method__note">Remember that you can drag & drop the folder.</span>
-        </div>
-      </div>
+      <UploaderFolder v-show="selectionId === 3" />
 
       <!-- YouTube -->
-      <div v-show="selectionId === 4" class="methods__content">
-        <PageHeader>
-          <h2 class="title">
-            <span class="icon"><font-awesome-icon :icon="['fab', 'youtube']" /></span>
-            <span>YouTube</span>
-          </h2>
-
-          <h3 class="subtitle">
-            Open videos from any public YouTube url.
-          </h3>
-        </PageHeader>
-
-        <div class="method__body text-center">
-          <input v-model="youtubeURL"
-                 type="url"
-                 class="input mb-2"
-                 placeholder="https://www.youtube.com/watch?v=..."
-                 data-private="lipsum">
-
-          <button class="button"
-                  @click="openYoutube">
-            <span>OPEN</span>
-          </button>
-
-          <span class="method__note">Make sure the video is public and you are not using a VPN/Proxy. <AppTip class="ml-2" tooltip="YouTube usually blocks access to public videos if you are using a VPN/Proxy." /></span>
-        </div>
-      </div>
+      <UploaderProvider
+        v-show="selectionId === 4"
+        provider="YouTube"
+        subtitle="Open public videos from YouTube."
+        :icon="['fab', 'youtube']"
+        placeholder="https://www.youtube.com/watch?v="
+        note="Make sure the video is public and you are not using a VPN/Proxy."
+        note-tooltip="YouTube usually blocks access to public videos if you are using a VPN/Proxy." />
 
       <!-- Giphy -->
-      <div v-show="selectionId === 5" class="methods__content">
-        <PageHeader>
-          <h2 class="title">
-            <span class="icon"><font-awesome-icon :icon="['fab', 'youtube']" /></span>
-            <span>Giphy</span>
-          </h2>
+      <UploaderProvider
+        v-show="selectionId === 5"
+        provider="Giphy"
+        subtitle="Open public GIFs from Giphy."
+        :icon="['fab', 'youtube']"
+        placeholder="https://giphy.com/gifs/" />
 
-          <h3 class="subtitle">
-            Open GIFs from any public Giphy url.
-          </h3>
-        </PageHeader>
-
-        <div class="method__body text-center">
-          <input v-model="giphyURL"
-                 type="url"
-                 class="input mb-2"
-                 placeholder="https://giphy.com/gifs/..."
-                 data-private="lipsum">
-
-          <button class="button" @click="openGiphy">
-            <span>OPEN</span>
-          </button>
-        </div>
-      </div>
+      <!-- 4chan -->
+      <UploaderProvider
+        v-show="selectionId === 6"
+        provider="FourChan"
+        title="4chan"
+        subtitle="Open a thread and select the photos to nudify."
+        icon="leaf"
+        placeholder="https://boards.4chan.org/r/thread/"
+        :watch="true" />
     </div>
   </div>
 </template>
@@ -441,7 +333,7 @@ export default {
   @apply mb-9;
 
   .title {
-    @apply text-lg font-semibold text-common-light;
+    @apply text-lg font-semibold text-snow-light;
 
     .icon {
       @apply mr-2;
@@ -459,28 +351,18 @@ export default {
 }
 
 .method__body {
-  &.method__body--columns {
-    @apply flex flex-wrap;
-
-    .column {
-      @apply w-1/2 px-2;
-
-      .box {
-        @apply h-full;
-      }
-    }
-  }
+  @apply text-center;
 
   .input {
     @apply mb-3;
   }
 
-  .button {
+  .button:not(:last-child) {
     @apply mb-6;
   }
 }
 
 .method__note {
-  @apply text-xs block  text-snow-darker;
+  @apply text-xs block text-snow-darker;
 }
 </style>

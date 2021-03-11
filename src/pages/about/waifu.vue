@@ -82,7 +82,7 @@ export default {
 
 .project__content {
   .title {
-    @apply text-white text-2xl;
+    @apply text-lg;
   }
 }
 
@@ -94,7 +94,7 @@ export default {
   }
 
   .right {
-    @apply flex justify-center items-center col-span-2;
+    @apply flex justify-end items-center col-span-2;
   }
 }
 </style>

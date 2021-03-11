@@ -87,16 +87,6 @@
       </button>
     </div>
 
-    <!-- Project buttons -->
-    <div class="update__actions__extra">
-      <a v-for="(item, index) in data.data.navigation"
-         :key="index"
-         :href="item.
-           ref"
-         target="_blank"
-         class="button button--sm">{{ item.label }}</a>
-    </div>
-
     <!-- Hint -->
     <div class="update__hint">
       <p>
@@ -231,25 +221,25 @@ export default {
   }
 
   .title {
-    @apply text-2xl text-white font-semibold;
+    @apply text-2xl font-bold;
 
     span {
-      @apply text-primary-500 font-bold;
+      @apply text-primary;
       cursor: help;
     }
   }
 
   .subtitle {
-    @apply text-lg;
+    @apply text-lg font-thin text-snow-darker;
   }
 }
 
 .update__status {
-  @apply mb-4 text-lg;
+  @apply mb-6;
 }
 
 .update__progressbar {
-  @apply mb-4;
+  @apply mb-6;
   width: 80%;
 
   progress {
@@ -270,7 +260,7 @@ export default {
 }
 
 .update__actions {
-  @apply mb-4;
+  @apply mb-6;
 
   .button {
     &:not(:last-child) {

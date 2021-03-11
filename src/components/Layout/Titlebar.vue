@@ -192,7 +192,7 @@ export default {
       @apply bg-dark-800;
 
       &.close {
-        @apply bg-danger-500;
+        @apply bg-danger;
       }
     }
   }

@@ -8,18 +8,13 @@ class Community {
     navigation: [
       {
         icon: 'globe',
-        href: 'https://dreamnet.tech',
+        href: 'https://www.dreamnet.tech',
         label: 'Website',
       },
       {
         icon: 'comments',
         href: 'https://chat.dreamnet.tech',
         label: 'Chat',
-      },
-      {
-        icon: 'users',
-        href: 'https://forum.dreamnet.tech',
-        label: 'Forum',
       },
     ],
     sections: [],
@@ -31,16 +26,6 @@ class Community {
         ],
         href: 'https://www.patreon.com/dreamnet',
         label: 'Patreon',
-      },
-      {
-        icon: 'coffee',
-        href: 'https://www.buymeacoffee.com/dreamnettech',
-        label: 'Buy Me A Coffe',
-      },
-      {
-        icon: 'donate',
-        href: 'https://liberapay.com/dreamnet/',
-        label: 'LiberaPay',
       },
       {
         icon: [

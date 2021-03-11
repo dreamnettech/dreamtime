@@ -10,8 +10,8 @@
  */
 
 .notification {
-  @apply mb-6 py-4 pl-4 pr-6 rounded;
-  @apply bg-menus-light text-white text-sm;
+  @apply mb-6 py-3 pl-6 pr-6 rounded;
+  @apply bg-menus-light text-white text-sm shadow-lg;
 
   h5 {
     @apply font-bold;
@@ -23,7 +23,7 @@
   }
 
   &.notification--warning {
-    @apply bg-warning-400 text-black;
+    @apply bg-warning text-black;
 
     code {
       @apply bg-warning-dark;

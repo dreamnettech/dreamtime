@@ -4,6 +4,16 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Clear",
+      "type": "shell",
+      "command": "yarn run shx rm -rf .nuxt dist electron/dist",
+      "presentation": {
+        "reveal": "silent",
+        "clear": true,
+        "group": "build"
+      },
+    },
+    {
       "label": "Build: Nuxt",
       "type": "npm",
       "script": "dev:nuxt",

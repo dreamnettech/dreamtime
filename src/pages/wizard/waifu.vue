@@ -16,7 +16,7 @@
           <span>Go back</span>
         </button>
 
-        <button v-if="!requirements.waifu.installed" class="button" @click="skip">
+        <button v-if="!requirements.waifu.installed" class="button button--primary" @click="skip">
           <span>Skip</span>
         </button>
 
@@ -131,26 +131,8 @@
         </SettingsField>
       </AppBox>
 
-      <hr>
-
-      <PageHeader>
-        <h2 class="title">
-          <span class="icon"><font-awesome-icon icon="book" /></span>
-          <span>Changelog</span>
-        </h2>
-      </PageHeader>
-
       <!-- Changelog -->
       <ProjectChangelog project="waifu" :limit="1" />
-    </div>
-
-    <div class="wizard__footer">
-      <button v-if="!requirements.waifu.installed"
-              v-tooltip="'This component is optional.'"
-              class="button button--xl"
-              @click="skip">
-        Skip
-      </button>
     </div>
   </div>
 </template>

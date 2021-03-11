@@ -1,12 +1,5 @@
 <template>
   <div class="box" @click="$emit('click')">
-    <!-- Photo -->
-    <div v-if="showPhoto" class="box__photo">
-      <slot name="photo">
-        <div class="box__photo__preview" :class="photo" />
-      </slot>
-    </div>
-
     <!-- Header -->
     <div v-if="showHeader" class="box__header">
       <slot name="header">
@@ -16,6 +9,13 @@
         <h3 v-if="subtitle" class="subtitle">
           {{ subtitle }}
         </h3>
+      </slot>
+    </div>
+
+    <!-- Photo -->
+    <div v-if="showPhoto" class="box__photo">
+      <slot name="photo">
+        <div class="box__photo__preview" :class="photo" />
       </slot>
     </div>
 

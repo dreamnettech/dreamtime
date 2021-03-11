@@ -11,14 +11,19 @@
 
 .button {
   @apply inline-flex items-center justify-center;
-  @apply px-3 rounded bg-button text-snow font-semibold shadow;
+  @apply px-3 rounded font-semibold uppercase tracking-wide;
   @apply outline-none #{!important};
-  @include transition('background-color, color');
-  height: 35px;
+  @include transition('background-color, color, box-shadow', 280ms, cubic-bezier(0.4, 0, 0.2, 1));
+  height: 36px;
+  min-width: 64px;
 
   &:hover,
   &:active {
-    @apply bg-button-light;
+    @apply bg-button shadow;
+  }
+
+  &:focus {
+    @apply bg-button-dark;
   }
 
   &[disabled],
@@ -28,17 +33,22 @@
 
   &.button--xs {
     @apply text-xs;
-    height: 25px;
+    height: 26px;
   }
 
   &.button--sm {
     @apply text-sm;
-    height: 30px;
+    height: 31px;
+  }
+
+  &.button--lg {
+    @apply px-6 text-lg;
+    height: 41px;
   }
 
   &.button--xl {
     @apply px-6 text-xl;
-    height: 45px;
+    height: 46px;
   }
 
   &.button--active,
@@ -47,53 +57,73 @@
   }
 
   &.button--primary {
-    @apply bg-primary text-night-darker;
+    @apply text-primary;
 
     &:hover,
     &:active {
-      @apply bg-primary-dark;
+      @apply bg-primary-default-20 shadow-lg;
+    }
+
+    &:focus {
+      @apply bg-primary-dark-20;
     }
   }
 
   &.button--warning {
-    @apply bg-warning text-night-darker;
+    @apply bg-warning text-night-darker shadow;
 
     &:hover,
     &:active {
+      @apply bg-warning-light shadow-lg;
+    }
+
+    &:focus {
       @apply bg-warning-dark;
     }
   }
 
   &.button--danger {
-    @apply bg-danger text-night-darker;
+    @apply bg-danger text-night-darker shadow;
 
     &:hover,
     &:active {
+      @apply bg-danger-light shadow-lg;
+    }
+
+    &:focus {
       @apply bg-danger-dark;
     }
   }
 
   &.button--success {
-    @apply bg-success text-night-darker;
+    @apply bg-success text-night-darker shadow;
 
     &:hover,
     &:active {
+      @apply bg-success-light shadow-lg;
+    }
+
+    &:focus {
       @apply bg-success-dark;
     }
   }
 
   &.button--info {
-    @apply bg-blue text-night-darker;
+    @apply bg-blue text-night-darker shadow;
 
     &:hover,
     &:active {
+      @apply bg-blue-light shadow-lg;
+    }
+
+    &:focus {
       @apply bg-blue-dark;
     }
   }
 
   .icon {
     &:not(:last-child) {
-      @apply mr-2;
+      margin-right: 8px;
     }
   }
 }
@@ -102,7 +132,7 @@
   @apply flex flex-wrap;
 
   .button {
-    @apply flex-1 rounded-none;
+    @apply rounded-none;
 
     &:first-child {
       @apply rounded-l;

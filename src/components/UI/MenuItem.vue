@@ -87,7 +87,7 @@ export default {
     },
 
     isBlackImageIcon() {
-      return this.isImageIcon && this.icon.includes('simple-icons')
+      return this.isImageIcon && (this.icon.includes('simple-icons') || this.icon.includes('4cdn.org'))
     },
 
     cssClass() {
@@ -143,7 +143,7 @@ export default {
     @apply bg-menus-light;
 
     .item__icon, .item__title {
-      @apply text-white;
+      @apply text-snow-lighter;
     }
   }
 
@@ -180,11 +180,7 @@ export default {
   }
 
   .item__title {
-    @apply block;
-
-    span {
-      @apply font-semibold;
-    }
+    @apply block font-title font-bold;
   }
 
   &::v-deep {

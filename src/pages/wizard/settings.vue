@@ -5,10 +5,6 @@
         <span class="icon"><font-awesome-icon icon="magic" /></span>
         <span>Setup Wizard</span>
       </h2>
-
-      <h3 class="subtitle">
-        Basic settings
-      </h3>
     </PageHeader>
 
     <div class="user__content">
@@ -31,7 +27,7 @@
       </AppBox>
 
       <div class="wizard__footer">
-        <button class="button button--xl" @click="next">
+        <button class="button button--xl button--primary" @click="next">
           Start!
         </button>
       </div>

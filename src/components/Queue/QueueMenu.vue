@@ -157,7 +157,7 @@ export default {
 .queue__content {
   @apply flex-1;
   @apply flex flex-wrap;
-  @apply overflow-y-auto whitespace-nowrap;
+  @apply overflow-y-auto whitespace-no-wrap;
 
   .photo {
     @apply w-1/2;

@@ -20,7 +20,7 @@
 
   &::v-deep {
     .title {
-      @apply text-lg font-bold text-white mb-1;
+      @apply text-lg font-title font-bold text-snow-lighter;
 
       .icon {
         @apply mr-2;
@@ -28,7 +28,7 @@
     }
 
     .subtitle {
-      @apply font-thin;
+      @apply font-title font-light text-snow-darker;
     }
 
     .tip {
@@ -38,7 +38,7 @@
 }
 
 .header__left {
-  @apply flex-1;
+  @apply flex-1 flex flex-col justify-center;
 
   &:not(:last-child) {
     @apply mr-3;
