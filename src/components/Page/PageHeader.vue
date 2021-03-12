@@ -4,11 +4,11 @@
       <slot />
     </div>
 
-    <div v-if="this.$slots.center" class="header__center">
+    <div v-if="$slots.center" class="header__center">
       <slot name="center" />
     </div>
 
-    <div v-if="this.$slots.right" class="header__right">
+    <div v-if="$slots.right" class="header__right">
       <slot name="right" />
     </div>
   </section>

@@ -7,6 +7,7 @@
 //
 // Written by Ivan Bravo Bravo <ivan@dreamnet.tech>, 2019.
 
+/*
 import { isNil } from 'lodash'
 
 let address
@@ -39,3 +40,4 @@ export function disconnect() {
 export function getAddress() {
   return address
 }
+*/

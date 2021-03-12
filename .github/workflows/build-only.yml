@@ -1,8 +1,8 @@
-name: Build Artifacts
+name: Build
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     paths:
       - src/**
       - "!src/.vscode/**"
@@ -28,11 +28,6 @@ jobs:
         os: [windows-2019, ubuntu-18.04, macos-10.15]
 
     steps:
-      - name: Install Node.js 14
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-
       - uses: actions/checkout@v1
 
       - uses: actions/cache@v2
@@ -41,6 +36,11 @@ jobs:
         with:
           path: src/node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('src/yarn.lock') }}
+
+      - name: Install Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
 
       - name: Install Dependencies
         working-directory: src
@@ -53,11 +53,6 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - name: Install Node.js 14
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-
       - uses: actions/checkout@v1
 
       - uses: actions/cache@v2
@@ -66,6 +61,11 @@ jobs:
         with:
           path: src/node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('src/yarn.lock') }}
+
+      - name: Install Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
 
       - name: Build - Electron entry
         working-directory: src
@@ -107,11 +107,6 @@ jobs:
             type: installer
 
     steps:
-      - name: Install Node.js 14
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-
       - uses: actions/checkout@v1
 
       - uses: actions/cache@v2
@@ -120,14 +115,16 @@ jobs:
         with:
           path: src/node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('src/yarn.lock') }}
+
+      - name: Install Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
       
       - uses: actions/download-artifact@v2
         with:
           name: dreamtime-dist
           path: src
-
-      - name: Display structure of downloaded files
-        run: ls
 
       - name: Build ENV
         working-directory: src
@@ -140,15 +137,3 @@ jobs:
       - name: Build Electron
         working-directory: src
         run: yarn build:electron
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: dreamtime-${{ matrix.os }}-${{ matrix.type }}-${{ matrix.target }}
-          path: |
-            dist/*.7z
-            dist/*.exe
-            dist/*.snap
-            dist/*.AppImage
-            dist/*.rpm
-            dist/*.pacman
-            dist/*.dmg

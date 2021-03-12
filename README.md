@@ -29,10 +29,10 @@
   <a target="_blank" href="https://codeclimate.com/github/private-dreamnet/dreamtime/maintainability">
     <img src="https://api.codeclimate.com/v1/badges/8d325515768f221e235f/maintainability" />
   </a>
-  <img src="https://img.shields.io/github/license/dreamnettech/dreampower" />
-  <a href="CONTRIBUTING.md#pull-requests">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
+  <a href="https://depfu.com/github/dreamnettech/dreamtime?project_id=23457">
+    <img src="https://badges.depfu.com/badges/4630226819e0a1962858e5dea59ef52e/overview.svg">
   </a>
+  <img src="https://img.shields.io/github/license/dreamnettech/dreamtime" />
 </p>
 
 ## Download
@@ -63,9 +63,3 @@ DreamTime is an open-source project that will be **free forever**. The project i
 🥰 Support this project by becoming a sponsor. Your logo will show up here and in the about section of our apps, with a link to your website. 
 
 [[Become a sponsor](https://www.patreon.com/join/dreamnet/checkout?rid=4426478)]
-
-## License
-
-[GNU GPLv3](./LICENSE).
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdreamnettech%2Fdreamtime.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdreamnettech%2Fdreamtime?ref=badge_large)

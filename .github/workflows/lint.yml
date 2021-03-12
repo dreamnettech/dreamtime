@@ -1,12 +1,20 @@
 name: Lint
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - src/**
+      - "!src/.vscode/**"
+      - "!src/build/**"
+      - "!src/.codeclimate.yml"
+      - "!src/.editorconfig"
+      - "!src/.gitignore"
+      - "!src/package.min.json"
     branches:
+      - hotfix/*
+      - release/*
       - canary
-      - master
 
 jobs:
   lint:
@@ -15,21 +23,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
+      - uses: actions/cache@v2
+        env:
+          cache-name: setup-modules
         with:
-          submodules: true
+          path: src/node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('src/yarn.lock') }}
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
 
-      - name: Use Yarn
-        run: npm install -g yarn
-
-      - name: Setup
-        working-directory: src/
+      - name: Install Dependencies
+        working-directory: src
         run: yarn install --network-timeout 1000000
 
       - name: Lint
-        working-directory: src/
+        working-directory: src
         run: yarn run lint
