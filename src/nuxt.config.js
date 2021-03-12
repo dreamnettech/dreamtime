@@ -2,7 +2,7 @@
 const tailwind = require('./tailwind.config')
 
 const dev = process.env.NODE_ENV === 'development'
-const cache = false
+const cache = true
 
 module.exports = {
   dev,
@@ -63,8 +63,6 @@ module.exports = {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    // '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
     // Doc: https://github.com/nuxt-community/style-resources-module
