@@ -1097,12 +1097,12 @@
   dependencies:
     randomcolor "^0.5.4"
 
-"@dreamnet/queue@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@dreamnet/queue/-/queue-0.1.2.tgz#5cbdbade0d1f77645ea5e40b0b78b2090ef86f94"
-  integrity sha512-XPPLkwX/mLoaMl+7yTDLdeV7Z2yx4EUSuogI2vkQG/ljIiC32bmC5fRxonFHbjl3o1nPd5T+uWJSZjrg6J+QXg==
+"@dreamnet/queue@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@dreamnet/queue/-/queue-1.0.2.tgz#06817b166d6ee0e643d516030346c2dff70de32b"
+  integrity sha512-45MwZSm3KpiVQ1B50OoPpWe6mf5+WWQj9yUWf2/QJuMHW5uLruM510SWeQJBG39LolJBBxcj4UiIjXNHskVLaQ==
   dependencies:
-    lodash "^4.17.15"
+    lodash "^4.17.20"
 
 "@electron/get@^1.0.1", "@electron/get@^1.12.2":
   version "1.12.4"

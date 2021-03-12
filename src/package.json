@@ -43,7 +43,7 @@
     "@dicebear/avatars": "^4.5.4",
     "@dicebear/avatars-jdenticon-sprites": "^4.5.4",
     "@dreamnet/logplease": "^1.0.0",
-    "@dreamnet/queue": "^0.1.2",
+    "@dreamnet/queue": "^1.0.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
