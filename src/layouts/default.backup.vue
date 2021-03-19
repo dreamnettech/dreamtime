@@ -85,7 +85,7 @@ export default {
   .layout__dropzone {
     @apply absolute left-0 right-0 top-0 bottom-0 z-50;
     @apply hidden opacity-0 pointer-events-none;
-    @apply bg-dark-900-70 items-center justify-center;
+    @apply bg-dark-900 bg-opacity-70 items-center justify-center;
     backdrop-filter: blur(6px);
     transition: opacity 0.2s ease-in-out;
     will-change: opacity;

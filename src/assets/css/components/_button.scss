@@ -61,11 +61,11 @@
 
     &:hover,
     &:active {
-      @apply bg-primary-default-20 shadow-lg;
+      @apply bg-primary bg-opacity-20 shadow-lg;
     }
 
     &:focus {
-      @apply bg-primary-dark-20;
+      @apply bg-primary-dark bg-opacity-20;
     }
   }
 

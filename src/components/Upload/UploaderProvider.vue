@@ -266,7 +266,7 @@ export default {
 
 .uploader__file__actions {
   @apply absolute top-0 bottom-0 left-0 right-0 z-10;
-  @apply bg-menus-dark-80 opacity-0;
+  @apply bg-menus-dark bg-opacity-80 opacity-0;
   @apply flex justify-center items-center;
   @include transition('opacity');
   backdrop-filter: blur(4px);

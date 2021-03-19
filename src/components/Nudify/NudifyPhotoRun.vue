@@ -317,7 +317,7 @@ export default {
 
 .run__preferences {
   @apply absolute top-0 z-20;
-  @apply flex opacity-0 bg-menus-default-80 w-full;
+  @apply flex opacity-0 bg-menus bg-opacity-80 w-full;
   backdrop-filter: blur(6px);
   transition: opacity 0.1s linear;
   height: 80px;

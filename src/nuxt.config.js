@@ -2,7 +2,7 @@
 const tailwind = require('./tailwind.config')
 
 const dev = process.env.NODE_ENV === 'development'
-const cache = true
+const cache = false
 
 module.exports = {
   dev,
@@ -78,8 +78,9 @@ module.exports = {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [],
 
-  // https://tailwindcss.nuxtjs.org
-  // tailwindcss: {},
+  tailwindcss: {
+    viewer: false,
+  },
 
   // https://github.com/nuxt-community/style-resources-module
   styleResources: {
@@ -195,7 +196,18 @@ module.exports = {
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
+  components: [
+    '~/components/Dialogs',
+    '~/components/Form',
+    '~/components/Help',
+    '~/components/Layout',
+    '~/components/Nudify',
+    '~/components/Page',
+    '~/components/Queue',
+    '~/components/Settings',
+    '~/components/UI',
+    '~/components/Upload',
+  ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
@@ -212,7 +224,7 @@ module.exports = {
     // extractCSS: false,
 
     //
-    publicPath: '/assets/',
+    publicPath: './assets/',
 
     // Customize Babel configuration for JavaScript and Vue files.
     babel: {
@@ -253,9 +265,6 @@ module.exports = {
     extend(config, { isDev }) {
       //
       config.target = 'electron-renderer'
-
-      //
-      config.output.publicPath = './assets/'
 
       // Source maps.
       config.devtool = 'source-map'

@@ -28,7 +28,7 @@
 
     .box__photo__content {
       @apply absolute w-full h-full;
-      @apply bg-black-70;
+      @apply bg-black bg-opacity-70;
     }
 
     .box__photo__preview {

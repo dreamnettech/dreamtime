@@ -63,13 +63,13 @@
 }
 
 .introjs-tooltip {
-  @apply bg-dark-500-90 #{!important};
+  @apply bg-dark-500 bg-opacity-90 #{!important};
   max-width: 400px !important;
   min-width: 350px !important;
 }
 
 .introjs-arrow {
-  //@apply bg-dark-500-90 #{!important};
+  //@apply bg-dark-500 bg-opacity-90 #{!important};
 }
 
 .introjs-helperLayer {
@@ -110,4 +110,8 @@
 
 .vue-slider-dot-tooltip-inner {
   @apply bg-primary border-primary;
+}
+
+.tui-image-editor-container .tui-image-editor-main {
+  top: 0 !important;
 }

@@ -143,10 +143,10 @@
                     :image-size="mask.photo.imageSize" />
 
     <!-- Editor tool -->
-    <LazyDialogEditor v-if="mask.canShowEdit"
-                      ref="editor"
-                      :file="file"
-                      :output-file="file" />
+    <DialogEditor v-if="mask.canShowEdit"
+                  ref="editor"
+                  :file="file"
+                  :output-file="file" />
   </div>
 </template>
 
@@ -289,7 +289,7 @@ export default {
 
 .mask__dropzone {
   @apply absolute left-0 right-0 top-0 bottom-0 z-50;
-  @apply bg-menus-dark-80 items-center justify-center;
+  @apply bg-menus-dark bg-opacity-80 items-center justify-center;
   @apply hidden opacity-0 pointer-events-none;
   backdrop-filter: blur(6px);
   transition: opacity 0.2s ease-in-out;
