@@ -104,7 +104,7 @@
     "slash": "^3.0.0",
     "sourcemapped-stacktrace": "^1.1.11",
     "sweetalert2": "^10.15.5",
-    "systeminformation": "^5.5.0",
+    "systeminformation": "^5.6.12",
     "tailwindcss-alpha": "hacknug/tailwindcss-alpha#feature/tests",
     "tinycolor": "^0.0.1",
     "tinycolor2": "^1.4.2",
